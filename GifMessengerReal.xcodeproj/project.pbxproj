@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7A6BEA41882830300162AFB /* EmoticonDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BEA31882830300162AFB /* EmoticonDictionary.m */; };
 		C7DD1B9D1878FB4E000BE1EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1B9C1878FB4E000BE1EF /* Foundation.framework */; };
 		C7DD1B9F1878FB4F000BE1EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1B9E1878FB4F000BE1EF /* CoreGraphics.framework */; };
 		C7DD1BA11878FB4F000BE1EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1BA01878FB4F000BE1EF /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C7A6BEA21882830300162AFB /* EmoticonDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonDictionary.h; sourceTree = "<group>"; };
+		C7A6BEA31882830300162AFB /* EmoticonDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonDictionary.m; sourceTree = "<group>"; };
 		C7DD1B991878FB4E000BE1EF /* GifMessengerReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifMessengerReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DD1B9C1878FB4E000BE1EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C7DD1B9E1878FB4F000BE1EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,6 +127,10 @@
 		C7DD1BA21878FB4F000BE1EF /* GifMessengerReal */ = {
 			isa = PBXGroup;
 			children = (
+				C7A6BEA21882830300162AFB /* EmoticonDictionary.h */,
+				C7A6BEA31882830300162AFB /* EmoticonDictionary.m */,
+				C7DD1BDC187A4C82000BE1EF /* EmoticonTextStorage.h */,
+				C7DD1BDD187A4C82000BE1EF /* EmoticonTextStorage.m */,
 				C7DD1BCD1878FBAB000BE1EF /* TestViewController.h */,
 				C7DD1BCE1878FBAB000BE1EF /* TestViewController.m */,
 				C7DD1BCF1878FBAB000BE1EF /* TestViewController.xib */,
@@ -131,8 +138,6 @@
 				C7DD1BAC1878FB4F000BE1EF /* AppDelegate.m */,
 				C7DD1BAE1878FB4F000BE1EF /* Images.xcassets */,
 				C7DD1BA31878FB4F000BE1EF /* Supporting Files */,
-				C7DD1BDC187A4C82000BE1EF /* EmoticonTextStorage.h */,
-				C7DD1BDD187A4C82000BE1EF /* EmoticonTextStorage.m */,
 			);
 			path = GifMessengerReal;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				C7DD1BD01878FBAB000BE1EF /* TestViewController.m in Sources */,
 				C7DD1BAD1878FB4F000BE1EF /* AppDelegate.m in Sources */,
 				C7DD1BA91878FB4F000BE1EF /* main.m in Sources */,
+				C7A6BEA41882830300162AFB /* EmoticonDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

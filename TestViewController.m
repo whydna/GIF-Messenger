@@ -9,6 +9,7 @@
 #import "TestViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "EmoticonTextStorage.h"
+#import "EmoticonDictionary.h"
 
 @interface TestViewController ()
 
@@ -69,40 +70,43 @@
     avLayer.frame = self.videoView.layer.bounds;
     [self.videoView.layer addSublayer:avLayer];
     
+    // start playing the video
+    [self.avPlayer play];
     
-    
-    
+    ///////////////////////////////////////
 
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"hello"];
+    // Initialize an emoticon dictionary
+    // TODO: this should be a singleton or something
+    EmoticonDictionary *emoticonDict = [[EmoticonDictionary alloc] init];
+    [emoticonDict addEmoticonWithUrl:[NSURL URLWithString:@"http://i.imgur.com/i5Tke1w.gif"]
+                          andKeyword:@"lol"];
     
-    EmoticonTextStorage *textStorage = [EmoticonTextStorage new];
-    [textStorage appendAttributedString:attributedString];
-    
+    // EmoticonTextStorage
+    EmoticonTextStorage *textStorage = [[EmoticonTextStorage alloc] initWithEmoticonDictionary:emoticonDict];
+
+    // Difine the dimensions of our TextView
     CGRect newTextViewRect = CGRectMake(0, 200, self.view.bounds.size.width, 200);
     
-    
-    // 2. Create the layout manager
+    // NSLayoutManager
     NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
     
-    // 3. Create a text container
+    // NSTextContainer
     CGSize containerSize = CGSizeMake(newTextViewRect.size.width,  CGFLOAT_MAX);
     NSTextContainer *container = [[NSTextContainer alloc] initWithSize:containerSize];
     container.widthTracksTextView = YES;
     [layoutManager addTextContainer:container];
+     
+    // Add the layout manager to the our text storage
     [textStorage addLayoutManager:layoutManager];
     
-    // 4. Create a UITextView
+    // Setup the text view
     self.textView = [[UITextView alloc] initWithFrame:newTextViewRect
                                     textContainer:container];
     [self.textView setBackgroundColor:[UIColor purpleColor]];
-    
     // self.textView.delegate = self;
-    
+
+    // Display the text view
     [self.view addSubview:self.textView];
-    
-    
-    // start playing the video
-    [self.avPlayer play];    
 }
 
 -(void)playerItemDidReachEnd:(NSNotification *)notification

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class EmoticonDictionary;
+
 @interface EmoticonTextStorage : NSTextStorage
+
+- (id)initWithEmoticonDictionary:(EmoticonDictionary *)emoticonDict;
 
 @end
