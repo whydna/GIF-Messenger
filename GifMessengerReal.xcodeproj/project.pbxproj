@@ -19,6 +19,11 @@
 		C7DD1BB81878FB4F000BE1EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1BA01878FB4F000BE1EF /* UIKit.framework */; };
 		C7DD1BC01878FB4F000BE1EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7DD1BBE1878FB4F000BE1EF /* InfoPlist.strings */; };
 		C7DD1BC21878FB4F000BE1EF /* GifMessengerRealTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DD1BC11878FB4F000BE1EF /* GifMessengerRealTests.m */; };
+		C7DD1BD01878FBAB000BE1EF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DD1BCE1878FBAB000BE1EF /* TestViewController.m */; };
+		C7DD1BD11878FBAB000BE1EF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7DD1BCF1878FBAB000BE1EF /* TestViewController.xib */; };
+		C7DD1BD3187901E1000BE1EF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1BD2187901E1000BE1EF /* AVFoundation.framework */; };
+		C7DD1BDA18794D98000BE1EF /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1BD918794D98000BE1EF /* ImageIO.framework */; };
+		C7DD1BDE187A4C82000BE1EF /* EmoticonTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DD1BDD187A4C82000BE1EF /* EmoticonTextStorage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,13 @@
 		C7DD1BBD1878FB4F000BE1EF /* GifMessengerRealTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GifMessengerRealTests-Info.plist"; sourceTree = "<group>"; };
 		C7DD1BBF1878FB4F000BE1EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C7DD1BC11878FB4F000BE1EF /* GifMessengerRealTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GifMessengerRealTests.m; sourceTree = "<group>"; };
+		C7DD1BCD1878FBAB000BE1EF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../TestViewController.h; sourceTree = "<group>"; };
+		C7DD1BCE1878FBAB000BE1EF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ../TestViewController.m; sourceTree = "<group>"; };
+		C7DD1BCF1878FBAB000BE1EF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestViewController.xib; path = ../TestViewController.xib; sourceTree = "<group>"; };
+		C7DD1BD2187901E1000BE1EF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C7DD1BD918794D98000BE1EF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		C7DD1BDC187A4C82000BE1EF /* EmoticonTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonTextStorage.h; sourceTree = "<group>"; };
+		C7DD1BDD187A4C82000BE1EF /* EmoticonTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonTextStorage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7DD1BDA18794D98000BE1EF /* ImageIO.framework in Frameworks */,
+				C7DD1BD3187901E1000BE1EF /* AVFoundation.framework in Frameworks */,
 				C7DD1B9F1878FB4F000BE1EF /* CoreGraphics.framework in Frameworks */,
 				C7DD1BA11878FB4F000BE1EF /* UIKit.framework in Frameworks */,
 				C7DD1B9D1878FB4E000BE1EF /* Foundation.framework in Frameworks */,
@@ -78,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				C7DD1BA21878FB4F000BE1EF /* GifMessengerReal */,
+				C7DD1BD418794D37000BE1EF /* Libraries */,
 				C7DD1BBB1878FB4F000BE1EF /* GifMessengerRealTests */,
 				C7DD1B9B1878FB4E000BE1EF /* Frameworks */,
 				C7DD1B9A1878FB4E000BE1EF /* Products */,
@@ -96,6 +111,8 @@
 		C7DD1B9B1878FB4E000BE1EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7DD1BD918794D98000BE1EF /* ImageIO.framework */,
+				C7DD1BD2187901E1000BE1EF /* AVFoundation.framework */,
 				C7DD1B9C1878FB4E000BE1EF /* Foundation.framework */,
 				C7DD1B9E1878FB4F000BE1EF /* CoreGraphics.framework */,
 				C7DD1BA01878FB4F000BE1EF /* UIKit.framework */,
@@ -107,10 +124,15 @@
 		C7DD1BA21878FB4F000BE1EF /* GifMessengerReal */ = {
 			isa = PBXGroup;
 			children = (
+				C7DD1BCD1878FBAB000BE1EF /* TestViewController.h */,
+				C7DD1BCE1878FBAB000BE1EF /* TestViewController.m */,
+				C7DD1BCF1878FBAB000BE1EF /* TestViewController.xib */,
 				C7DD1BAB1878FB4F000BE1EF /* AppDelegate.h */,
 				C7DD1BAC1878FB4F000BE1EF /* AppDelegate.m */,
 				C7DD1BAE1878FB4F000BE1EF /* Images.xcassets */,
 				C7DD1BA31878FB4F000BE1EF /* Supporting Files */,
+				C7DD1BDC187A4C82000BE1EF /* EmoticonTextStorage.h */,
+				C7DD1BDD187A4C82000BE1EF /* EmoticonTextStorage.m */,
 			);
 			path = GifMessengerReal;
 			sourceTree = "<group>";
@@ -143,6 +165,13 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		C7DD1BD418794D37000BE1EF /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -220,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7DD1BA71878FB4F000BE1EF /* InfoPlist.strings in Resources */,
+				C7DD1BD11878FBAB000BE1EF /* TestViewController.xib in Resources */,
 				C7DD1BAF1878FB4F000BE1EF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +269,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7DD1BDE187A4C82000BE1EF /* EmoticonTextStorage.m in Sources */,
+				C7DD1BD01878FBAB000BE1EF /* TestViewController.m in Sources */,
 				C7DD1BAD1878FB4F000BE1EF /* AppDelegate.m in Sources */,
 				C7DD1BA91878FB4F000BE1EF /* main.m in Sources */,
 			);
@@ -441,6 +473,7 @@
 				C7DD1BC71878FB4F000BE1EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C7DD1BC81878FB4F000BE1EF /* Build configuration list for PBXNativeTarget "GifMessengerRealTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +482,7 @@
 				C7DD1BCA1878FB4F000BE1EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
