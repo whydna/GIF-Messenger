@@ -71,48 +71,8 @@
     
     
     
- //   NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"like after"];
-//    
-//    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-//    UIImage *theImage = [UIImage animatedImageWithAnimatedGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://yum.gifsicle.com/8e9b612.gif"]]];
-//    textAttachment.image = theImage;
-//    textAttachment.bounds = CGRectMake(0, 0, 25, 25);
-
-//    
-//    
-//    UIImageView *uiimageview = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 25, 25)];
-//    [uiimageview setImage:theImage];
-//    
-//    [self.view addSubview: uiimageview];
-//    
-//    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
-//    
-//    [attributedString replaceCharactersInRange:NSMakeRange(4, 1) withAttributedString:attrStringWithImage];
-//
-//    [self.textView setAttributedText:attributedString];
-
-
-
     
-//    UIView *smallVideoView = [[UIView alloc] initWithFrame:CGRectMake(absPoint.x, absPoint.y, textAttachment.bounds.size.width, textAttachment.bounds.size.height)];
-//    [smallVideoView setBackgroundColor:[UIColor redColor]];
-//    
-//    AVPlayerLayer *smallAVLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
-//    smallAVLayer.frame = smallVideoView.layer.bounds;
-//    [smallVideoView.layer addSublayer:smallAVLayer];
-//    
-//    [self.view addSubview:smallVideoView];
 
-
-    /// TODO:
-    
-    /* 
-     
-     The best way to implement this is to use a text storage like weinderlich tutorial. On edit, do a regex search for the recognized text i.e: ":facepal-picard" and then replace it with a space characvter " ", and then move the avi player view over the character with the exclusion set.
-    
-    */
-    
-    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"hello"];
     
     EmoticonTextStorage *textStorage = [EmoticonTextStorage new];
@@ -136,7 +96,8 @@
                                     textContainer:container];
     [self.textView setBackgroundColor:[UIColor purpleColor]];
     
-//    self.textView.delegate = self;
+    // self.textView.delegate = self;
+    
     [self.view addSubview:self.textView];
     
     
