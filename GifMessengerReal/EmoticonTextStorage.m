@@ -43,6 +43,16 @@
     [self endEditing];
 }
 
+- (void)replaceCharactersInRange:(NSRange)range withAttributedString:(NSAttributedString *)attrStr
+{
+    NSLog(@"replaceCharactersInRange:%@ withAttributedString:%@", NSStringFromRange(range), attrStr);
+    
+    [self beginEditing];
+    [_backingStore replaceCharactersInRange:range withAttributedString:attrStr];
+    [self edited:NSTextStorageEditedCharacters|NSTextStorageEditedAttributes range:range changeInLength:attrStr.string.length-range.length];
+    [self endEditing];
+}
+
 - (void)setAttributes:(NSDictionary *)attrs range:(NSRange)range
 {
     NSLog(@"setAttributes:%@ range:%@", attrs, NSStringFromRange(range));
@@ -65,76 +75,41 @@
     NSRange extendedRange = NSUnionRange(changedRange, [[_backingStore string] lineRangeForRange:NSMakeRange(changedRange.location, 0)]);
     
     extendedRange = NSUnionRange(changedRange, [[_backingStore string] lineRangeForRange:NSMakeRange(NSMaxRange(changedRange), 0)]);
-    [self applyStylesToRange:extendedRange];
+    [self applyEmoticonsToRange:extendedRange];
 }
 
-- (void)applyStylesToRange:(NSRange)searchRange
+- (void)applyEmoticonsToRange:(NSRange)searchRange
 {
-    UIFontDescriptor* fontDescriptor = [UIFontDescriptor
-                                        preferredFontDescriptorWithTextStyle:UIFontTextStyleBody];
-    UIFontDescriptor* boldFontDescriptor = [fontDescriptor
-                                            fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
-    UIFont* boldFont =  [UIFont fontWithDescriptor:boldFontDescriptor size: 0.0];
-    UIFont* normalFont =  [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    NSDictionary *emoticonDict = @{@"lol": @"http://yum.gifsicle.com/8e9b612.gif", @"asdf": @"http://yum.gifsicle.com/8e9b612.gif"};
     
-    
-    NSDictionary* boldAttributes = @{ NSFontAttributeName : boldFont };
-    NSDictionary* normalAttributes = @{ NSFontAttributeName : normalFont };
-    
-    
-    NSDictionary *emoticonDict = @{@"lol": @"lolgif", @"asdf", @"asdfgif"};
+    __block NSUInteger numCharactersRemoved = 0;
     
     for(NSString *emoticonKey in emoticonDict) {
-        NSString *emoticonReplacement = [emoticonDict objectForKey:emoticonKey];
-        
         NSString *regexStr = [NSString stringWithFormat:@"\\s(%@)\\s", emoticonKey];
-        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:regexStr
-                                                                               options:0
-                                                                                 error:nil];
+        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:nil];
+        
+
         
         [regex enumerateMatchesInString:[_backingStore string]
                                 options:0
-                                  range:searchRange
+                                  range:NSMakeRange(searchRange.location, searchRange.length - numCharactersRemoved)
                              usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop)
          {
              NSRange matchRange = [match rangeAtIndex:1];
+             [self replaceCharactersInRange:matchRange withString:@""];
+        
+             NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
              
-             [self addAttributes:boldAttributes range:matchRange];
+             NSURL *imageUrl = [NSURL URLWithString:[emoticonDict objectForKey:emoticonKey]];
+             textAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+             textAttachment.bounds = CGRectMake(0, 0, 25, 25);
+
+             NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
+             [self replaceCharactersInRange:NSMakeRange(matchRange.location, 0) withAttributedString:attributedString];
              
-             if (NSMaxRange(matchRange)+1 < self.length) {
-                 [self addAttributes:normalAttributes range:NSMakeRange(NSMaxRange(matchRange)+1, 1)];
-             }
+             
+             numCharactersRemoved += matchRange.length;
          }];
-
-        
-        
     }
-
-
-    
-    
-
-    
-    
-    
-//    // 1. create some fonts
-//    UIFontDescriptor* fontDescriptor = [UIFontDescriptor
-//                                        preferredFontDescriptorWithTextStyle:UIFontTextStyleBody];
-//    UIFontDescriptor* boldFontDescriptor = [fontDescriptor
-//                                            fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
-//    UIFont* boldFont =  [UIFont fontWithDescriptor:boldFontDescriptor size: 0.0];
-//    UIFont* normalFont =  [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-//    
-//    // 2. match items surrounded by asterisks
-//    NSString* regexStr = @"(\\*\\w+(\\s\\w+)*\\*)\\s";
-//    NSRegularExpression* regex = [NSRegularExpression
-//                                  regularExpressionWithPattern:regexStr
-//                                  options:0
-//                                  error:nil];
-//    
-//    NSDictionary* boldAttributes = @{ NSFontAttributeName : boldFont };
-//    NSDictionary* normalAttributes = @{ NSFontAttributeName : normalFont };
-//    
-//    // 3. iterate over each match, making the text bold
 }
 @end
