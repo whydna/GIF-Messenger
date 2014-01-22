@@ -12,22 +12,11 @@
 @implementation EmoticonTextStorage
 {
     NSMutableAttributedString *_backingStore;
-    EmoticonDictionary *_emoticonDict;
 }
 
 - (id)init
 {
     if (self = [super init]) {
-        _emoticonDict = [[EmoticonDictionary alloc] init];
-        _backingStore = [NSMutableAttributedString new];
-    }
-    return self;
-}
-
-- (id)initWithEmoticonDictionary:(EmoticonDictionary *)emoticonDict
-{
-    if (self = [super init]) {
-        _emoticonDict = emoticonDict;
         _backingStore = [NSMutableAttributedString new];
     }
     return self;
@@ -100,7 +89,7 @@
     __block NSUInteger numCharactersRemoved = 0;
     
     // loop through the emoticon dictionary and try to match each word
-    for(NSString *emoticonKey in [_emoticonDict getAllKeywords]) {
+    for(NSString *emoticonKey in [[EmoticonDictionary singletonInstance] getAllKeywords]) {
         NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"\\s(%@)\\s", emoticonKey]
                                                                                options:0
                                                                                  error:nil];
@@ -118,7 +107,7 @@
                             
                                  // append the emoticon image to the string using the attachment feature for NSAttributedString
                                  NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-                                 textAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[_emoticonDict urlForKeyword:emoticonKey]]];
+                                 textAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[[EmoticonDictionary singletonInstance] urlForKeyword:emoticonKey]]];
                                  textAttachment.bounds = CGRectMake(0, 0, 25, 25);
 
                                  NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];

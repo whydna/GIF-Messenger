@@ -8,8 +8,9 @@
 
 #import "TestViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "EmoticonTextStorage.h"
 #import "EmoticonDictionary.h"
+#import "EmoticonTextView.h"
+#import "EmoticonTextStorage.h"
 
 @interface TestViewController ()
 
@@ -75,35 +76,20 @@
     
     ///////////////////////////////////////
 
-    // Initialize an emoticon dictionary
-    // TODO: this should be a singleton or something
-    EmoticonDictionary *emoticonDict = [[EmoticonDictionary alloc] init];
-    [emoticonDict addEmoticonWithUrl:[NSURL URLWithString:@"http://i.imgur.com/i5Tke1w.gif"]
-                          andKeyword:@"lol"];
+    // TODO: hide everything behind an EmoticonTextView
     
-    // EmoticonTextStorage
-    EmoticonTextStorage *textStorage = [[EmoticonTextStorage alloc] initWithEmoticonDictionary:emoticonDict];
 
-    // Difine the dimensions of our TextView
+    
+    // generate an emoticon dictionary
+    [[EmoticonDictionary singletonInstance] addEmoticonWithUrl:[NSURL URLWithString:@"http://i.imgur.com/i5Tke1w.gif"]
+                                                    andKeyword:@"lol"];
+
     CGRect newTextViewRect = CGRectMake(0, 200, self.view.bounds.size.width, 200);
-    
-    // NSLayoutManager
-    NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
-    
-    // NSTextContainer
-    CGSize containerSize = CGSizeMake(newTextViewRect.size.width,  CGFLOAT_MAX);
-    NSTextContainer *container = [[NSTextContainer alloc] initWithSize:containerSize];
-    container.widthTracksTextView = YES;
-    [layoutManager addTextContainer:container];
-     
-    // Add the layout manager to the our text storage
-    [textStorage addLayoutManager:layoutManager];
-    
-    // Setup the text view
-    self.textView = [[UITextView alloc] initWithFrame:newTextViewRect
-                                    textContainer:container];
+
+    self.textView = [[EmoticonTextView alloc] initWithFrame:newTextViewRect];
     [self.textView setBackgroundColor:[UIColor purpleColor]];
-    // self.textView.delegate = self;
+    
+
 
     // Display the text view
     [self.view addSubview:self.textView];

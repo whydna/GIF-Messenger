@@ -12,6 +12,4 @@
 
 @interface EmoticonTextStorage : NSTextStorage
 
-- (id)initWithEmoticonDictionary:(EmoticonDictionary *)emoticonDict;
-
 @end

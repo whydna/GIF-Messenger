@@ -13,6 +13,27 @@
     NSMutableDictionary *_dict;
 }
 
++ (id)singletonInstance
+{
+    static EmoticonDictionary *singletonInstance = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        singletonInstance = [[self alloc] init];
+    });
+    
+    return singletonInstance;
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        _dict = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
+
 - (void)addEmoticonWithUrl:(NSURL *)url andKeyword:(NSString *)keyword
 {
     [_dict setObject:url forKey:keyword];
