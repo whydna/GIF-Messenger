@@ -14,6 +14,8 @@
 
 @property IBOutlet UIView *inputMessageViewContainer;
 @property EmoticonMessageView *inputMessageView;
+@property IBOutlet UIView *sentMessageViewContainer;
+@property EmoticonMessageView *sentMessageView;
 
 - (IBAction) sendButtonTapped;
 

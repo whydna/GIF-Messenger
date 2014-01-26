@@ -20,7 +20,7 @@
 @property AVPlayer *avPlayer;
 @property AVPlayerItem *avPlayerItem;
 
-- (id)initWithFrame:(CGRect)frame andAttributedString:(NSAttributedString *)attributedString;
+- (id)initWithFrame:(CGRect)frame andAttributedString:(NSAttributedString *)attributedString shouldDisplayVideo:(BOOL)vid;
 - (NSAttributedString *)attributedString;
 
 @end
