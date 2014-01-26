@@ -34,7 +34,9 @@
     // Do any additional setup after loading the view from its nib.
     
     // Generate the emoticon dictionary
-    [[EmoticonDictionary singletonInstance] addEmoticonWithId:@"OyuvptF" andKeyword:@"lol"];
+    [[EmoticonDictionary singletonInstance] addEmoticonWithId:@"OyuvptF" andKeyword:@"wtf"];
+    [[EmoticonDictionary singletonInstance] addEmoticonWithId:@"9CfmU1q" andKeyword:@"duh"];
+    [[EmoticonDictionary singletonInstance] addEmoticonWithId:@"AlxxT1w" andKeyword:@"woah"];
     
     // Create the message view and display it.
     self.inputMessageView = [[EmoticonMessageView alloc] initWithFrame:self.inputMessageViewContainer.bounds

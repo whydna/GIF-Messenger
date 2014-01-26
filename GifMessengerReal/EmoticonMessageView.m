@@ -24,6 +24,11 @@
         CGRect textViewFrame = CGRectMake(0, frame.size.height/2, frame.size.width, frame.size.height/2);
         self.textView = [[EmoticonTextView alloc] initWithFrame:textViewFrame andAttributedString:attributedString];
         [self.textView setBackgroundColor:[UIColor yellowColor]];
+
+        // TODO: figure this out
+        self.textView.editable = (vid) ? NO : YES;
+        
+        self.textView.delegate = self;
         [self addSubview:self.textView];
         
         // Setup and display the video
@@ -41,6 +46,15 @@
     return self;
 }
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(EmoticonTextAttachment *)textAttachment inRange:(NSRange)characterRange
+{
+    NSString *emoticonKeyword = [textAttachment emoticonKeyword];
+    NSURL *mp4URL = [[EmoticonDictionary singletonInstance] mp4UrlForKeyword:emoticonKeyword];
+    [self playVideoWithMP4URL:mp4URL];
+    
+    return YES;
+}
+
 - (NSAttributedString *) attributedString
 {
     return [self.textView attributedString];
@@ -49,41 +63,45 @@
 - (void) initVideoPlayer
 {
     // Setup the video player
+    self.avPlayer = [AVPlayer playerWithPlayerItem:nil];
     
-    NSAttributedString *attributedString = [self.textView attributedString];
-    NSArray *attachments = [attributedString allAttachments];
+    // infinitely loop the video
     
+    //prevent the player from pausing at the end
+    self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    
+    // get notified when the video ends so we can replay it
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:[self.avPlayer currentItem]];
+
+    // add the player to the view
+    AVPlayerLayer *avLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
+    avLayer.frame = self.videoView.layer.bounds;
+    [self.videoView.layer addSublayer:avLayer];
+    
+    // Play the first emoticon in the message
+    NSArray *attachments = [[self.textView attributedString] allAttachments];
     if ([attachments count] > 0) {
         NSString *firstEmoticonKeyword = [(EmoticonTextAttachment *)[attachments objectAtIndex:0] emoticonKeyword];
-        NSURL *mp4Url = [[EmoticonDictionary singletonInstance] mp4UrlForKeyword:firstEmoticonKeyword];
-        
-        // initialize the player item
-        AVURLAsset *avAsset = [[AVURLAsset alloc] initWithURL:mp4Url options:nil];
-        self.avPlayerItem = [AVPlayerItem playerItemWithAsset:avAsset];
+        NSURL *mp4URL = [[EmoticonDictionary singletonInstance] mp4UrlForKeyword:firstEmoticonKeyword];
 
-        // initialize the player
-        self.avPlayer = [[AVPlayer alloc] initWithPlayerItem:self.avPlayerItem];
-
-
-        // infinitely loop the video
-
-        //prevent the player from pausing at the end
-        self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-
-        // get notified when the video ends so we can replay it
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(playerItemDidReachEnd:)
-                                                     name:AVPlayerItemDidPlayToEndTimeNotification
-                                                   object:[self.avPlayer currentItem]];
-
-        // add the player to the view
-        AVPlayerLayer *avLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
-        avLayer.frame = self.videoView.layer.bounds;
-        [self.videoView.layer addSublayer:avLayer];
-        
-        // start playing the video
-        [self.avPlayer play];
+        [self playVideoWithMP4URL:mp4URL];
     }
+}
+
+- (void) playVideoWithMP4URL:(NSURL *)mp4URL
+{
+    // initialize the player item
+    AVURLAsset *avAsset = [[AVURLAsset alloc] initWithURL:mp4URL options:nil];
+    self.avPlayerItem = [AVPlayerItem playerItemWithAsset:avAsset];
+    
+    // initialize the player
+    [self.avPlayer replaceCurrentItemWithPlayerItem:self.avPlayerItem];
+
+    // start playing the video
+    [self.avPlayer play];
 }
 
 -(void)playerItemDidReachEnd:(NSNotification *)notification

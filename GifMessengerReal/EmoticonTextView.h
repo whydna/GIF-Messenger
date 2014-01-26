@@ -10,7 +10,7 @@
 
 @class EmoticonTextStorage;
 
-@interface EmoticonTextView : UITextView
+@interface EmoticonTextView : UITextView 
 
 - (id)initWithFrame:(CGRect)frame andAttributedString:(NSAttributedString *)attributedString;
 - (NSAttributedString *)attributedString;

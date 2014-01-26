@@ -12,7 +12,7 @@
 @class AVPlayer;
 @class AVPlayerItem;
 
-@interface EmoticonMessageView : UIView
+@interface EmoticonMessageView : UIView <UITextViewDelegate>
 
 @property UIView *videoView;
 @property EmoticonTextView *textView;

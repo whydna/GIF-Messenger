@@ -35,7 +35,7 @@
 
     [_layoutManager addTextContainer:_textContainer];
     
-    return  [super initWithFrame:frame textContainer:_textContainer];
+    return [super initWithFrame:frame textContainer:_textContainer];
 }
 
 /*
