@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C7276D2E188E313900582EA8 /* EmoticonTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7276D2D188E313900582EA8 /* EmoticonTextView.m */; };
 		C7A6BEA41882830300162AFB /* EmoticonDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BEA31882830300162AFB /* EmoticonDictionary.m */; };
+		C7D17F12188F91A3003BAF4B /* EmoticonMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D17F11188F91A3003BAF4B /* EmoticonMessageView.m */; };
 		C7DD1B9D1878FB4E000BE1EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1B9C1878FB4E000BE1EF /* Foundation.framework */; };
 		C7DD1B9F1878FB4F000BE1EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1B9E1878FB4F000BE1EF /* CoreGraphics.framework */; };
 		C7DD1BA11878FB4F000BE1EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD1BA01878FB4F000BE1EF /* UIKit.framework */; };
@@ -43,6 +44,8 @@
 		C7276D2D188E313900582EA8 /* EmoticonTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonTextView.m; sourceTree = "<group>"; };
 		C7A6BEA21882830300162AFB /* EmoticonDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonDictionary.h; sourceTree = "<group>"; };
 		C7A6BEA31882830300162AFB /* EmoticonDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonDictionary.m; sourceTree = "<group>"; };
+		C7D17F10188F91A3003BAF4B /* EmoticonMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonMessageView.h; sourceTree = "<group>"; };
+		C7D17F11188F91A3003BAF4B /* EmoticonMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonMessageView.m; sourceTree = "<group>"; };
 		C7DD1B991878FB4E000BE1EF /* GifMessengerReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifMessengerReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DD1B9C1878FB4E000BE1EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C7DD1B9E1878FB4F000BE1EF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -130,6 +133,8 @@
 		C7DD1BA21878FB4F000BE1EF /* GifMessengerReal */ = {
 			isa = PBXGroup;
 			children = (
+				C7D17F10188F91A3003BAF4B /* EmoticonMessageView.h */,
+				C7D17F11188F91A3003BAF4B /* EmoticonMessageView.m */,
 				C7276D2C188E313900582EA8 /* EmoticonTextView.h */,
 				C7276D2D188E313900582EA8 /* EmoticonTextView.m */,
 				C7A6BEA21882830300162AFB /* EmoticonDictionary.h */,
@@ -279,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D17F12188F91A3003BAF4B /* EmoticonMessageView.m in Sources */,
 				C7DD1BDE187A4C82000BE1EF /* EmoticonTextStorage.m in Sources */,
 				C7DD1BD01878FBAB000BE1EF /* TestViewController.m in Sources */,
 				C7DD1BAD1878FB4F000BE1EF /* AppDelegate.m in Sources */,

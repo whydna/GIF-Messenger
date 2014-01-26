@@ -34,14 +34,23 @@
 }
 
 
-- (void)addEmoticonWithUrl:(NSURL *)url andKeyword:(NSString *)keyword
+- (void)addEmoticonWithId:(NSString *)id andKeyword:(NSString *)keyword
 {
-    [_dict setObject:url forKey:keyword];
+    [_dict setObject:id forKey:keyword];
 }
 
-- (NSURL *)urlForKeyword:(NSString *)keyword
+- (NSURL *)thumbnailUrlForKeyword:(NSString *)keyword
 {
-    return [_dict objectForKey:keyword];
+    NSString *emoticonId = [_dict objectForKey:keyword];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gifsicle.com/sandbox/emoticons/%@.gif", emoticonId]];
+    return url;
+}
+
+- (NSURL *)mp4UrlForKeyword:(NSString *)keyword
+{
+    NSString *emoticonId = [_dict objectForKey:keyword];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gifsicle.com/sandbox/emoticons_mp4/%@.mp4", emoticonId]];
+    return url;
 }
 
 - (NSArray *)getAllKeywords

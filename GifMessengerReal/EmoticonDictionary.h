@@ -10,10 +10,11 @@
 
 @interface EmoticonDictionary : NSObject
 
-+ (id) singletonInstance;
++ (id)singletonInstance;
 
-- (void)addEmoticonWithUrl:(NSURL *)url andKeyword:(NSString *)keyword;
-- (NSURL *)urlForKeyword:(NSString *)keyword;
+- (void)addEmoticonWithId:(NSString *)id andKeyword:(NSString *)keyword;
+- (NSURL *)thumbnailUrlForKeyword:(NSString *)keyword;
+- (NSURL *)mp4UrlForKeyword:(NSString *)keyword;
 - (NSArray *)getAllKeywords;
 
 @end

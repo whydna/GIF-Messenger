@@ -8,19 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class AVPlayer;
-@class AVPlayerItem;
+@class EmoticonMessageView;
 
 @interface TestViewController : UIViewController
 
-@property IBOutlet UIView *videoView;
-@property UITextView *textView;
-
-@property AVPlayer *avPlayer;
-@property AVPlayerItem *avPlayerItem;
-//@property BOOL avPlayerIsBuffering;
-//@property AVAssetImageGenerator *avImageGenerator;
-//@property id avPlaybackObserver;
-//@property float avFrameRate;
+@property EmoticonMessageView *messageView;
 
 @end

@@ -82,8 +82,6 @@
 
 - (void)applyEmoticonsToRange:(NSRange)searchRange
 {
- 
-    
     // We need to keep track of how many characters were removed/replaced with emoticons
     // so we can adjust our ranges accordingly.
     __block NSUInteger numCharactersRemoved = 0;
@@ -107,7 +105,7 @@
                             
                                  // append the emoticon image to the string using the attachment feature for NSAttributedString
                                  NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-                                 textAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[[EmoticonDictionary singletonInstance] urlForKeyword:emoticonKey]]];
+                                 textAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[[EmoticonDictionary singletonInstance] thumbnailUrlForKeyword:emoticonKey]]];
                                  textAttachment.bounds = CGRectMake(0, 0, 25, 25);
 
                                  NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
