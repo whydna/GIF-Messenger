@@ -12,6 +12,9 @@
 
 @interface TestViewController : UIViewController
 
-@property EmoticonMessageView *messageView;
+@property IBOutlet UIView *inputMessageViewContainer;
+@property EmoticonMessageView *inputMessageView;
+
+- (IBAction) sendButtonTapped;
 
 @end

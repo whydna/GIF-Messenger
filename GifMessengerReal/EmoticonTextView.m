@@ -11,14 +11,20 @@
 
 @implementation EmoticonTextView
 {
-    NSLayoutManager *_layoutManager;
     EmoticonTextStorage *_textStorage;
+
+    NSLayoutManager *_layoutManager;
     NSTextContainer *_textContainer;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (NSAttributedString *)attributedString
 {
-    _textStorage = [EmoticonTextStorage new];
+    return [_textStorage attributedString];
+}
+
+- (id)initWithFrame:(CGRect)frame andAttributedString:(NSAttributedString *)attributedString
+{
+    _textStorage = [[EmoticonTextStorage alloc] initWithAttributedString:attributedString];
 
     _layoutManager = [[NSLayoutManager alloc] init];
     [_textStorage addLayoutManager:_layoutManager];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C71DA1C61894C65C00A67A96 /* EmoticonTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = C71DA1C51894C65C00A67A96 /* EmoticonTextAttachment.m */; };
+		C71E288F1894D082008A0CE0 /* NSAttributedString+EmoticonAttachments.m in Sources */ = {isa = PBXBuildFile; fileRef = C71E288E1894D082008A0CE0 /* NSAttributedString+EmoticonAttachments.m */; };
 		C7276D2E188E313900582EA8 /* EmoticonTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7276D2D188E313900582EA8 /* EmoticonTextView.m */; };
 		C7A6BEA41882830300162AFB /* EmoticonDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6BEA31882830300162AFB /* EmoticonDictionary.m */; };
 		C7D17F12188F91A3003BAF4B /* EmoticonMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D17F11188F91A3003BAF4B /* EmoticonMessageView.m */; };
@@ -40,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C71DA1C41894C65C00A67A96 /* EmoticonTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonTextAttachment.h; sourceTree = "<group>"; };
+		C71DA1C51894C65C00A67A96 /* EmoticonTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonTextAttachment.m; sourceTree = "<group>"; };
+		C71E288D1894D082008A0CE0 /* NSAttributedString+EmoticonAttachments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+EmoticonAttachments.h"; sourceTree = "<group>"; };
+		C71E288E1894D082008A0CE0 /* NSAttributedString+EmoticonAttachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+EmoticonAttachments.m"; sourceTree = "<group>"; };
 		C7276D2C188E313900582EA8 /* EmoticonTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonTextView.h; sourceTree = "<group>"; };
 		C7276D2D188E313900582EA8 /* EmoticonTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonTextView.m; sourceTree = "<group>"; };
 		C7A6BEA21882830300162AFB /* EmoticonDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonDictionary.h; sourceTree = "<group>"; };
@@ -97,6 +103,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C71E28901894D09E008A0CE0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C71E288D1894D082008A0CE0 /* NSAttributedString+EmoticonAttachments.h */,
+				C71E288E1894D082008A0CE0 /* NSAttributedString+EmoticonAttachments.m */,
+				C7A6BEA21882830300162AFB /* EmoticonDictionary.h */,
+				C7A6BEA31882830300162AFB /* EmoticonDictionary.m */,
+				C7D17F10188F91A3003BAF4B /* EmoticonMessageView.h */,
+				C7D17F11188F91A3003BAF4B /* EmoticonMessageView.m */,
+				C7276D2C188E313900582EA8 /* EmoticonTextView.h */,
+				C7276D2D188E313900582EA8 /* EmoticonTextView.m */,
+				C7DD1BDC187A4C82000BE1EF /* EmoticonTextStorage.h */,
+				C7DD1BDD187A4C82000BE1EF /* EmoticonTextStorage.m */,
+				C71DA1C41894C65C00A67A96 /* EmoticonTextAttachment.h */,
+				C71DA1C51894C65C00A67A96 /* EmoticonTextAttachment.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		C7DD1B901878FB4E000BE1EF = {
 			isa = PBXGroup;
 			children = (
@@ -133,14 +158,7 @@
 		C7DD1BA21878FB4F000BE1EF /* GifMessengerReal */ = {
 			isa = PBXGroup;
 			children = (
-				C7D17F10188F91A3003BAF4B /* EmoticonMessageView.h */,
-				C7D17F11188F91A3003BAF4B /* EmoticonMessageView.m */,
-				C7276D2C188E313900582EA8 /* EmoticonTextView.h */,
-				C7276D2D188E313900582EA8 /* EmoticonTextView.m */,
-				C7A6BEA21882830300162AFB /* EmoticonDictionary.h */,
-				C7A6BEA31882830300162AFB /* EmoticonDictionary.m */,
-				C7DD1BDC187A4C82000BE1EF /* EmoticonTextStorage.h */,
-				C7DD1BDD187A4C82000BE1EF /* EmoticonTextStorage.m */,
+				C71E28901894D09E008A0CE0 /* Classes */,
 				C7DD1BCD1878FBAB000BE1EF /* TestViewController.h */,
 				C7DD1BCE1878FBAB000BE1EF /* TestViewController.m */,
 				C7DD1BCF1878FBAB000BE1EF /* TestViewController.xib */,
@@ -285,12 +303,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7D17F12188F91A3003BAF4B /* EmoticonMessageView.m in Sources */,
+				C71E288F1894D082008A0CE0 /* NSAttributedString+EmoticonAttachments.m in Sources */,
 				C7DD1BDE187A4C82000BE1EF /* EmoticonTextStorage.m in Sources */,
 				C7DD1BD01878FBAB000BE1EF /* TestViewController.m in Sources */,
 				C7DD1BAD1878FB4F000BE1EF /* AppDelegate.m in Sources */,
 				C7276D2E188E313900582EA8 /* EmoticonTextView.m in Sources */,
 				C7DD1BA91878FB4F000BE1EF /* main.m in Sources */,
 				C7A6BEA41882830300162AFB /* EmoticonDictionary.m in Sources */,
+				C71DA1C61894C65C00A67A96 /* EmoticonTextAttachment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

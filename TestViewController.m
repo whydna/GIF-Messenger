@@ -9,6 +9,7 @@
 #import "TestViewController.h"
 #import "EmoticonDictionary.h"
 #import "EmoticonMessageView.h"
+#import "NSAttributedString+EmoticonAttachments.h"
 
 @interface TestViewController ()
 
@@ -34,16 +35,25 @@
     [[EmoticonDictionary singletonInstance] addEmoticonWithId:@"OyuvptF" andKeyword:@"lol"];
     
     // Create the message view and display it.
-    CGRect messageViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 150);
-    self.messageView = [[EmoticonMessageView alloc] initWithFrame:messageViewRect];
+    self.inputMessageView = [[EmoticonMessageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 150)
+                                                   andAttributedString:nil];
     
-    [self.view addSubview:self.messageView];
+    [self.inputMessageViewContainer addSubview:self.inputMessageView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)sendButtonTapped
+{
+    NSLog(@"%@", [[self.inputMessageView attributedString] getAllAttachments]);
+    
+    
+    NSLog(@"send button tapped");
 }
 
 @end

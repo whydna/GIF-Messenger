@@ -8,29 +8,26 @@
 
 #import "EmoticonTextStorage.h"
 #import "EmoticonDictionary.h"
+#import "EmoticonTextAttachment.h"
 
 @implementation EmoticonTextStorage
-{
-    NSMutableAttributedString *_backingStore;
-}
 
-- (id)init
+- (id)initWithAttributedString:(NSAttributedString *)attributedString
 {
     if (self = [super init]) {
-        _backingStore = [NSMutableAttributedString new];
+        [self setAttributedString:[[NSMutableAttributedString alloc] initWithAttributedString:attributedString]];
     }
     return self;
 }
 
 - (NSString *)string
 {
-    return [_backingStore string];
+    return [[self attributedString] string];
 }
 
-- (NSDictionary *)attributesAtIndex:(NSUInteger)location
-                     effectiveRange:(NSRangePointer)range
+- (NSDictionary *)attributesAtIndex:(NSUInteger)location effectiveRange:(NSRangePointer)range
 {
-    return [_backingStore attributesAtIndex:location
+    return [[self attributedString] attributesAtIndex:location
                              effectiveRange:range];
 }
 
@@ -39,7 +36,7 @@
     NSLog(@"replaceCharactersInRange:%@ withString:%@", NSStringFromRange(range), str);
     
     [self beginEditing];
-    [_backingStore replaceCharactersInRange:range withString:str];
+    [[self attributedString] replaceCharactersInRange:range withString:str];
     [self edited:NSTextStorageEditedCharacters|NSTextStorageEditedAttributes range:range changeInLength:str.length-range.length];
     [self endEditing];
 }
@@ -49,7 +46,7 @@
     NSLog(@"replaceCharactersInRange:%@ withAttributedString:%@", NSStringFromRange(range), attrStr);
     
     [self beginEditing];
-    [_backingStore replaceCharactersInRange:range withAttributedString:attrStr];
+    [[self attributedString] replaceCharactersInRange:range withAttributedString:attrStr];
     [self edited:NSTextStorageEditedCharacters|NSTextStorageEditedAttributes range:range changeInLength:attrStr.string.length-range.length];
     [self endEditing];
 }
@@ -59,7 +56,7 @@
     NSLog(@"setAttributes:%@ range:%@", attrs, NSStringFromRange(range));
     
     [self beginEditing];
-    [_backingStore setAttributes:attrs range:range];
+    [[self attributedString] setAttributes:attrs range:range];
     [self edited:NSTextStorageEditedAttributes range:range changeInLength:0];
     [self endEditing];
 }
@@ -74,8 +71,8 @@
 - (void)performReplacementsForRange:(NSRange)changedRange
 {
     // Since changed range only indicates a single character, we extend it to include the entire line here
-    NSRange extendedRange = NSUnionRange(changedRange, [[_backingStore string] lineRangeForRange:NSMakeRange(changedRange.location, 0)]);
-    extendedRange = NSUnionRange(changedRange, [[_backingStore string] lineRangeForRange:NSMakeRange(NSMaxRange(changedRange), 0)]);
+    NSRange extendedRange = NSUnionRange(changedRange, [[[self attributedString] string] lineRangeForRange:NSMakeRange(changedRange.location, 0)]);
+    extendedRange = NSUnionRange(changedRange, [[[self attributedString] string] lineRangeForRange:NSMakeRange(NSMaxRange(changedRange), 0)]);
     
     [self applyEmoticonsToRange:extendedRange];
 }
@@ -87,12 +84,14 @@
     __block NSUInteger numCharactersRemoved = 0;
     
     // loop through the emoticon dictionary and try to match each word
-    for(NSString *emoticonKey in [[EmoticonDictionary singletonInstance] getAllKeywords]) {
-        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"\\s(%@)\\s", emoticonKey]
+    for(NSString *emoticonKeyword in [[EmoticonDictionary singletonInstance] getAllKeywords]) {
+        NSURL *emoticonThumbUrl = [[EmoticonDictionary singletonInstance] thumbnailUrlForKeyword:emoticonKeyword];
+        
+        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"\\s(%@)\\s", emoticonKeyword]
                                                                                options:0
                                                                                  error:nil];
         
-        [regex enumerateMatchesInString:[_backingStore string]
+        [regex enumerateMatchesInString:[[self attributedString] string]
                                 options:0
                                   range:NSMakeRange(searchRange.location, searchRange.length - numCharactersRemoved)
                              usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop) {
@@ -104,8 +103,9 @@
                                  numCharactersRemoved += matchRange.length;
                             
                                  // append the emoticon image to the string using the attachment feature for NSAttributedString
-                                 NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-                                 textAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[[EmoticonDictionary singletonInstance] thumbnailUrlForKeyword:emoticonKey]]];
+                                 EmoticonTextAttachment *textAttachment = [[EmoticonTextAttachment alloc] init];
+                                 [textAttachment setEmoticonKeyword:emoticonKeyword];
+                                 textAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:emoticonThumbUrl]];
                                  textAttachment.bounds = CGRectMake(0, 0, 25, 25);
 
                                  NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:textAttachment];
@@ -115,4 +115,5 @@
                              }];
     }
 }
+
 @end

@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class EmoticonDictionary;
+@class NSMutableAttributedString;
 
 @interface EmoticonTextStorage : NSTextStorage
+
+@property NSMutableAttributedString *attributedString;
+
+- (id)initWithAttributedString:(NSAttributedString *)attributedString;
 
 @end

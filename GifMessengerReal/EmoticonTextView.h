@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class EmoticonTextStorage;
+
 @interface EmoticonTextView : UITextView
+
+- (id)initWithFrame:(CGRect)frame andAttributedString:(NSAttributedString *)attributedString;
+- (NSAttributedString *)attributedString;
 
 @end

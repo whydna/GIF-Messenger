@@ -39,16 +39,21 @@
     [_dict setObject:id forKey:keyword];
 }
 
+- (NSString *)emoticonIdForKeyword:(NSString *)keyword
+{
+    return [_dict objectForKey:keyword];
+}
+
 - (NSURL *)thumbnailUrlForKeyword:(NSString *)keyword
 {
-    NSString *emoticonId = [_dict objectForKey:keyword];
+    NSString *emoticonId = [self emoticonIdForKeyword:keyword];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gifsicle.com/sandbox/emoticons/%@.gif", emoticonId]];
     return url;
 }
 
 - (NSURL *)mp4UrlForKeyword:(NSString *)keyword
 {
-    NSString *emoticonId = [_dict objectForKey:keyword];
+    NSString *emoticonId = [self emoticonIdForKeyword:keyword];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gifsicle.com/sandbox/emoticons_mp4/%@.mp4", emoticonId]];
     return url;
 }

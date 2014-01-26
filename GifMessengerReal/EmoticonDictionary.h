@@ -13,8 +13,11 @@
 + (id)singletonInstance;
 
 - (void)addEmoticonWithId:(NSString *)id andKeyword:(NSString *)keyword;
+
+- (NSString *)emoticonIdForKeyword:(NSString *)keyword;
 - (NSURL *)thumbnailUrlForKeyword:(NSString *)keyword;
 - (NSURL *)mp4UrlForKeyword:(NSString *)keyword;
+
 - (NSArray *)getAllKeywords;
 
 @end
