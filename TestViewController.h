@@ -10,12 +10,18 @@
 
 @class EmoticonMessageView;
 
-@interface TestViewController : UIViewController
+@interface TestViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property IBOutlet UIView *inputMessageViewContainer;
 @property EmoticonMessageView *inputMessageView;
+
 @property IBOutlet UIView *sentMessageViewContainer;
 @property EmoticonMessageView *sentMessageView;
+
+@property IBOutlet UITableView *tableView;
+// array of NSAttributedStrings. They are the messages that should
+// be shown in the table view
+@property NSMutableArray *messages;
 
 - (IBAction) sendButtonTapped;
 

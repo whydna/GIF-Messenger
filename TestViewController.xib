@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="inputMessageViewContainer" destination="cBN-9B-bC5" id="XGy-TK-zmf"/>
                 <outlet property="sentMessageViewContainer" destination="fsc-f1-bN3" id="FDf-GM-EyM"/>
+                <outlet property="tableView" destination="s5d-Nh-myR" id="NAs-XD-1xC"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -36,6 +37,15 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="s5d-Nh-myR">
+                    <rect key="frame" x="0.0" y="256" width="320" height="287"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="kFl-bo-TxP"/>
+                        <outlet property="delegate" destination="-1" id="CFO-Ea-7Hl"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
