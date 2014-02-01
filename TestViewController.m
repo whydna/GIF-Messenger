@@ -38,8 +38,6 @@
     [[EmoticonDictionary singletonInstance] addEmoticonWithId:@"9CfmU1q" andKeyword:@"duh"];
     [[EmoticonDictionary singletonInstance] addEmoticonWithId:@"AlxxT1w" andKeyword:@"woah"];
     
-    self.messages = [[NSMutableArray alloc] init];
-    
     // Create the message view and display it.
     self.inputMessageView = [[EmoticonMessageView alloc] initWithFrame:self.inputMessageViewContainer.bounds
                                                    andAttributedString:nil
@@ -57,55 +55,13 @@
 
 - (void)sendButtonTapped
 {
-    [self.view endEditing:YES];
+    self.sentMessageView = [[EmoticonMessageView alloc] initWithFrame:self.sentMessageViewContainer.bounds
+                                                   andAttributedString:[self.inputMessageView attributedString]
+                                                    shouldDisplayVideo:YES];
+
+    [self.sentMessageViewContainer addSubview:self.sentMessageView];
     
-    [self.messages addObject:[self.inputMessageView attributedString]];
-    
-    [self.tableView reloadData];
     NSLog(@"send button tapped");
-}
-
-// UITableView Data Source Methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return [self.messages count];
-    } else {
-        return 0;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    self.sentMessageView = [[EmoticonMessageView alloc] initWithFrame:self.sentMessageViewContainer.bounds
-    //                                                   andAttributedString:[self.inputMessageView attributedString]
-    //                                                    shouldDisplayVideo:YES];
-    //
-    //    [self.sentMessageViewContainer addSubview:self.sentMessageView];
-    
-    CGRect messageViewRect = CGRectMake(0, 0, tableView.frame.size.width, 200);
-    EmoticonMessageView *messageView = [[EmoticonMessageView alloc] initWithFrame:messageViewRect
-                                                              andAttributedString:[self.messages objectAtIndex:indexPath.row]
-                                                               shouldDisplayVideo:YES];
-
-
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:CellIdentifier];
-    }
-    
-    [cell.contentView addSubview:messageView];
-    
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 150;
 }
 
 @end
