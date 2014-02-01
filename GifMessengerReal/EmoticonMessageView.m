@@ -31,16 +31,16 @@
         self.textView.delegate = self;
         [self addSubview:self.textView];
         
-        // Setup and display the video
-        CGRect videoViewFrame = CGRectMake(0, 0, frame.size.width, frame.size.height/2);
-        self.videoView = [[UIView alloc] initWithFrame:videoViewFrame];
-        [self.videoView setBackgroundColor:[UIColor greenColor]];
-        [self addSubview:self.videoView];
-        
-        // TODO: figure this out
-        if (vid) {
-            [self initVideoPlayer];
-        }
+//        // Setup and display the video
+//        CGRect videoViewFrame = CGRectMake(0, 0, frame.size.width, frame.size.height/2);
+//        self.videoView = [[UIView alloc] initWithFrame:videoViewFrame];
+//        [self.videoView setBackgroundColor:[UIColor greenColor]];
+//        [self addSubview:self.videoView];
+//        
+//        // TODO: figure this out
+//        if (vid) {
+//            [self initVideoPlayer];
+//        }
     }
     
     return self;
